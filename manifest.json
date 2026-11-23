@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Recanto",
+  "version": "1.0.0",
+  "description": "Recanto: painel pessoal na nova aba, com tarefas, pomodoro, agenda, hábitos, diário, gráficos, temas, sons de fundo e o que toca no Spotify.",
+  "chrome_url_overrides": {
+    "newtab": "nova.html"
+  },
+  "permissions": [
+    "tabs",
+    "scripting",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://open.spotify.com/*"
+  ],
+  "background": {
+    "service_worker": "fundo.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://open.spotify.com/*"
+      ],
+      "js": [
+        "spotify.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "captura": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1"
+      },
+      "description": "Captura rápida do Recanto",
+      "global": true
+    },
+    "notas": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+2"
+      },
+      "description": "Notas rápidas do Recanto",
+      "global": true
+    }
+  }
+}
